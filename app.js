@@ -20,17 +20,32 @@ const crearTarjeta = (pelicula) => {
         <div class="movie-card__poster">
             <span class="movie-card__image" src="${imagen}" alt="${title}"></span>
         </div>
+        <div class="movie-card__content">
+            <h3 class="movie-card__title">${title}</h3>
+            <p class="movie-card__year">${año}</p>
+        </div>
     </article>`
     };
 
-const probarApi = async() => {
-    const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=es-ES`;
-    console.log('Url de la peticion',url);
-    const respuesta = await fetch(url);
-    const datos = await respuesta.json();
-    console.log('Respuesta completa', datos);   
-    console.log('Peliculas', datos.results);
-    console.log('Total de resultados', datos.total_results);
-}
+const iniciar = async() => {
+    console.log('Mostrar peliculas');
+    const peliculas = await obtenerPeliculas();
+    const primeraPelicula = peliculas[0];
+    console.log('Primera pelicula', primeraPelicula);
+    moviesgrid.innerHTML = crearTarjeta(primeraPelicula);
+    console.log('Primera pelicula renderizada');
 
-probarApi();
+}
+iniciar();
+
+// const probarApi = async() => {
+//     const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=es-ES`;
+//     console.log('Url de la peticion',url);
+//     const respuesta = await fetch(url);
+//     const datos = await respuesta.json();
+//     console.log('Respuesta completa', datos);   
+//     console.log('Peliculas', datos.results);
+//     console.log('Total de resultados', datos.total_results);
+// }
+
+// probarApi();
