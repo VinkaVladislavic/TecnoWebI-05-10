@@ -1,5 +1,28 @@
 const API_KEY ='843bf643f30d8b0ad4d1856b270139f7';
 const BASE_URL = 'https://api.themoviedb.org/3';
+const IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
+const moviesgrid = document.getElementById('movies-grid');
+
+const obtenerPeliculas = async() => {
+    const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=es-ES`;
+    const respuesta = await fetch(url);
+    const datos = await respuesta.json();
+    return datos.results;
+}
+
+const crearTarjeta = (pelicula) => {
+    const{title,release_date,vote_average,poster_path} = pelicula;
+    const año = release_date?release_date.split('-')[0]:'N/A';
+    const imagen = poster_path?`${IMAGE_URL}${poster_path}`:'';
+    const rating = vote_average?vote_average.toFixed(1):'N/A';
+    return `
+    <article class="movie-card">
+        <div class="movie-card__poster">
+            <span class="movie-card__image" src="${imagen}" alt="${title}"></span>
+        </div>
+    </article>`
+    };
+
 const probarApi = async() => {
     const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=es-ES`;
     console.log('Url de la peticion',url);
