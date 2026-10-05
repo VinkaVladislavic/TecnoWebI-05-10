@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Lista de Películas Favoritas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__logo">Mi Lista de Películas</h1>
+        <button class="header__toggle" id="theme-toggle" aria-label="Cambiar tema">🌙</button>
+    </header>
+    <main class="main">
+        <section class="form-section">
+            <h2 class="form-section__title">Agregar Película</h2>
+            <form class="movie-form" id="movie-form">
+                <div class="movie-form__group">
+                    <label class="movie-form__label" for="titulo">Título:</label>
+                    <input 
+                        class="movie-form__input" 
+                        type="text" 
+                        id="titulo" 
+                        name="titulo" 
+                        required 
+                        minlength="2" 
+                        maxlength="100" 
+                        placeholder="Ej: El Padrino">
+                </div>
+                <div class="movie-form__group">
+                    <label class="movie-form__label" for="genero">Género:</label>
+                    <select class="movie-form__select" id="genero" name="genero" required>
+                        <option value="">Seleccionar género...</option>
+                        <option value="Acción">Acción</option>
+                        <option value="Comedia">Comedia</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Ciencia Ficción">Ciencia Ficción</option>
+                        <option value="Terror">Terror</option>
+                        <option value="Animación">Animación</option>
+                        <option value="Romance">Romance</option>
+                    </select>
+                </div>
+                <div class="movie-form__group">
+                    <label class="movie-form__label" for="año">Año:</label>
+                    <input 
+                        class="movie-form__input" 
+                        type="number" 
+                        id="año" 
+                        name="año" 
+                        required 
+                        min="1900" 
+                        max="2025" 
+                        placeholder="Ej: 1972">
+                </div>
+                <div class="movie-form__group">
+                    <label class="movie-form__label" for="calificacion">Calificación (1-10):</label>
+                    <input 
+                        class="movie-form__input" 
+                        type="number" 
+                        id="calificacion" 
+                        name="calificacion" 
+                        required 
+                        min="1" 
+                        max="10" 
+                        step="0.1" 
+                        placeholder="Ej: 9.5">
+                </div>
+                <button class="movie-form__submit" type="submit">
+                    Agregar Película
+                </button>
+            </form>
+        </section>
+        <section class="filters">
+            <h2 class="filters__title">Filtrar y Buscar</h2>
+            <div class="filters__container">
+                <input 
+                    class="filters__search" 
+                    type="text" 
+                    id="search" 
+                    placeholder="Buscar por título...">
+                <select class="filters__select" id="filter-genero">
+                    <option value="">Todos los géneros</option>
+                    <option value="Acción">Acción</option>
+                    <option value="Comedia">Comedia</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Ciencia Ficción">Ciencia Ficción</option>
+                    <option value="Terror">Terror</option>
+                    <option value="Animación">Animación</option>
+                    <option value="Romance">Romance</option>
+                </select>
+                <select class="filters__select" id="filter-estado">
+                    <option value="">Todos los estados</option>
+                    <option value="vistas">Vistas</option>
+                    <option value="pendientes">Pendientes</option>
+                </select>
+                <button class="filters__clear" id="clear-filters">
+                    Limpiar filtros
+                </button>
+            </div>
+        </section>
+        <section class="stats">
+            <h2 class="stats__title">Estadísticas</h2>
+            <div class="stats__grid">
+                <div class="stats__card">
+                    <span class="stats__number" id="stats-total">0</span>
+                    <span class="stats__label">Total</span>
+                </div>
+                <div class="stats__card">
+                    <span class="stats__number" id="stats-vistas">0</span>
+                    <span class="stats__label">Vistas</span>
+                </div>
+                <div class="stats__card">
+                    <span class="stats__number" id="stats-pendientes">0</span>
+                    <span class="stats__label">Pendientes</span>
+                </div>
+                <div class="stats__card">
+                    <span class="stats__number" id="stats-promedio">0.0</span>
+                    <span class="stats__label">Promedio</span>
+                </div>
+            </div>
+        </section>
+        <section class="movies">
+            <h2 class="movies__title">Mis Películas</h2>
+            <div class="movies__grid" id="movies-grid">
+            </div>
+            <div class="movies__empty" id="movies-empty" style="display: none;">
+                <p>No hay películas en tu lista.</p>
+                <p>¡Agrega tu primera película favorita!</p>
+            </div>
+        </section>
+    </main>
+    <div class="notification" id="notification"></div>
+    <script src="app1.js"></script>
+</body>
+</html>
