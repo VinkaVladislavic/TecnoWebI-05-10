@@ -30,9 +30,10 @@ const crearTarjeta = (pelicula) => {
 const iniciar = async() => {
     console.log('Mostrar peliculas');
     const peliculas = await obtenerPeliculas();
+    console.log(`${peliculas.length} peliculas obtenidas`);
     const primeraPelicula = peliculas[0];
     console.log('Primera pelicula', primeraPelicula);
-    moviesgrid.innerHTML = crearTarjeta(primeraPelicula);
+    moviesgrid.innerHTML = peliculas.map(crearTarjeta).join('');
     console.log('Primera pelicula renderizada');
 
 }
